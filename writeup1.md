@@ -190,6 +190,250 @@ phase_1: `Public speaking is very easy.`
 ```
 
 phase_2:
+```c
+uint32_t phase_2 (int32_t arg_8h)
+{
+    uint32_t _6digits[6];
+    line = arg_8h;
+    read_six_numbers (line, _6digits);
+    if (_6digits != 1) {
+        explode_bomb ();
+    }
+    i = 1;
+    tab[6] = &_6digits;
+    do {
+        eax = i + 1;
+        eax = tab[i] * eax;
+        if (tab[i] != eax) {
+            explode_bomb ();
+        }
+        i++;
+    } while (i <= 5);
+    return eax;
+}
 ```
 
+resultat:	`1 2 6 24 120 720`
+
+phase_3:
+```c
+uint32_t phase_3 (const char * s) {
+    int32_t var_18h;
+    uint32_t var_ch;
+    unsigned char var_5h;
+    uint32_t var_4h;
+    edx = s;
+    eax = sscanf (edx, "%d %c %d", var_ch, var_5h, var_4h);
+    if (eax <= 2) {
+        explode_bomb ();
+    }
+    if (var_ch <= 7) {
+        eax = var_ch;
+        /* switch table (8 cases) at 0x80497e8 */
+        bl = q;
+        if (var_4h == 777) {
+            goto label_0;
+        }
+        explode_bomb ();
+        bl = b;
+        if (var_4h == 214) {
+            goto label_0;
+        }
+        explode_bomb ();
+        bl = b;
+        if (var_4h == 755) {
+            goto label_0;
+        }
+        explode_bomb ();
+        bl = k;
+        if (var_4h == 251) {
+            goto label_0;
+        }
+        explode_bomb ();
+        bl = o;
+        if (var_4h == 160) {
+            goto label_0;
+        }
+        explode_bomb ();
+        bl = t;
+        if (var_4h == 458) {
+            goto label_0;
+        }
+        explode_bomb ();
+        bl = t;
+        if (var_4h == 780) {
+            goto label_0;
+        }
+        explode_bomb ();
+        bl = b;
+        if (var_4h == 524) {
+            goto label_0;
+        }
+        explode_bomb ();
+    }
+    bl = x;
+    explode_bomb ();
+label_0:
+    if (bl != var_5h) {
+        explode_bomb ();
+    }
+    ebx = var_18h;
+    return eax;
+}
 ```
+
+3 possible results:
+`1 b 214`
+`2 b 755`
+`7 b 524`
+
+phase_4:
+```c
+uint32_t phase_4 (const char * s) {
+    va_list args;
+    edx = s;
+    eax = sscanf (edx, "%d", args);
+    if (eax == 1) {
+        if (args > 0) {
+            goto label_0;
+        }
+    }
+    explode_bomb ();
+label_0:
+    eax = args;
+    eax = func4 (eax);
+    if (eax != 0x37) { // 55 '7'
+        explode_bomb ();
+    }
+    return eax;
+}
+```
+
+result: `9`
+
+phase_5:
+```c
+uint32_t phase_5 (int32_t arg_8h) {
+    int32_t var_18h;
+    int32_t var_8h;
+    int32_t var_2h;
+    ebx = arg_8h;
+    eax = string_length (ebx);
+    if (eax != 6) {
+        explode_bomb ();
+    }
+    edx = 0;
+    ecx = &var_8h;
+    esi = "isrveawhobpnutfg";
+    do {
+        al = ebx[edx];
+        al &= 0xf;
+        eax = (int32_t) al;
+        al = eax[esi];
+        *((edx + ecx)) = al;
+        edx++;
+    } while (edx <= 5);
+    var_2h = 0;
+    eax = strings_not_equal (var_8h, "giants");
+    if (eax != 0) {
+        explode_bomb ();
+    }
+    esp = &var_18h;
+    return eax;
+}
+```
+
+result: `opekmq`
+
+phase_6:
+```c
+uint32_t phase_6 (int32_t arg_8h) {
+    int32_t var_58h;
+    int32_t var_3ch;
+    int32_t var_38h;
+    int32_t var_34h;
+    int32_t var_30h;
+    int32_t var_18h;
+    edx = arg_8h;
+    var_34h = node1;
+    read_six_numbers (edx, var_18h);
+    edi = 0;
+label_0:
+    eax = &var_18h;
+    eax = *((eax + edi*4));
+    eax--;
+    if (eax > 5) {
+        explode_bomb ();
+    }
+    ebx = edi + 1;
+    if (ebx > 5) {
+        goto label_2;
+    }
+    eax = edi*4;
+    var_38h = eax;
+    esi = &var_18h;
+    do {
+        edx = var_38h;
+        eax = edx[esi];
+        if (eax == *((esi + ebx*4))) {
+            explode_bomb ();
+        }
+        ebx++;
+    } while (ebx <= 5);
+label_2:
+    edi++;
+    if (edi <= 5) {
+        goto label_0;
+    }
+    edi = 0;
+    ecx = &var_18h;
+    eax = &var_30h;
+    var_3ch = eax;
+label_1:
+    esi = var_34h;
+    ebx = 1;
+    eax = edi*4;
+    edx = eax;
+    if (ebx >= *((eax + ecx))) {
+        goto label_3;
+    }
+    eax = *((edx + ecx));
+    do {
+        esi = *((esi + 8));
+        ebx++;
+    } while (ebx < eax);
+label_3:
+    edx = var_3ch;
+    *((edx + edi*4)) = esi;
+    edi++;
+    if (edi <= 5) {
+        goto label_1;
+    }
+    esi = var_30h;
+    var_34h = var_30h;
+    edi = 1;
+    edx = &var_30h;
+    do {
+        eax = *((edx + edi*4));
+        *((esi + 8)) = eax;
+        esi = eax;
+        edi++;
+    } while (edi <= 5);
+    *((esi + 8)) = 0;
+    esi = var_34h;
+    edi = 0;
+    do {
+        edx = *((esi + 8));
+        eax = *(esi);
+        if (eax < *(edx)) {
+            explode_bomb ();
+        }
+        esi = *((esi + 8));
+        edi++;
+    } while (edi <= 4);
+    esp = &var_58h;
+    return eax;
+}
+```
+
+result: `4`
