@@ -436,4 +436,32 @@ label_3:
 }
 ```
 
-result: `4`
+```
+(gdb) p node1
+$1 = 253
+(gdb) p node2
+$2 = 725
+(gdb) p node3
+$3 = 301
+(gdb) p node4
+$4 = 997
+(gdb) p node5
+$5 = 212
+(gdb) p node6
+$6 = 432
+```
+
+4 > 2 > 6 > 3 > 1 > 5
+
+result: `4 2 6 3 1 5`
+
+thor ssh password `Publicspeakingisveryeasy.126241207201b2149opekmq426315`
+thor ssh password `Publicspeakingisveryeasy.126241207202b7559opekmq426315` <=== good 
+thor ssh password `Publicspeakingisveryeasy.126241207207b5249opekmq426315`
+
+true thor password `Publicspeakingisveryeasy.126241207201b2149opekmq426135`
+
+```
+thor@BornToSecHackMe:~$ cat README 
+Finish this challenge and use the result as password for 'zaz' user.
+```
