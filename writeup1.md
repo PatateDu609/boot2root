@@ -7,10 +7,10 @@ result:
 ➜  ~ ifconfig
 bridge100: flags=8a63<UP,BROADCAST,SMART,RUNNING,ALLMULTI,SIMPLEX,MULTICAST> mtu 1500
 	options=3<RXCSUM,TXCSUM>
-	ether f2:2f:4b:00:8c:64 
+	ether f2:2f:4b:00:8c:64
 	inet 192.168.64.1 netmask 0xffffff00 broadcast 192.168.64.255
-	inet6 fe80::f02f:4bff:fe00:8c64%bridge100 prefixlen 64 scopeid 0x16 
-	inet6 fda8:424a:3d63:d0fe:c9a:6453:629:bbd1 prefixlen 64 autoconf secured 
+	inet6 fe80::f02f:4bff:fe00:8c64%bridge100 prefixlen 64 scopeid 0x16
+	inet6 fda8:424a:3d63:d0fe:c9a:6453:629:bbd1 prefixlen 64 autoconf secured
 	Configuration:
 		id 0:0:0:0:0:0 priority 0 hellotime 0 fwddelay 0
 		maxage 0 holdcnt 0 proto stp maxaddr 100 timeout 1200
@@ -55,7 +55,7 @@ Nmap done: 256 IP addresses (2 hosts up) scanned in 2.46 seconds
 
 result: we found the forum
 ```
-msf6 auxiliary(scanner/http/dir_webdav_unicode_bypass) > use auxiliary/scanner/http/files_dir 
+msf6 auxiliary(scanner/http/dir_webdav_unicode_bypass) > use auxiliary/scanner/http/files_dir
 msf6 auxiliary(scanner/http/files_dir) > set RHOSTS 192.168.64.2
 RHOSTS => 192.168.64.2
 msf6 auxiliary(scanner/http/files_dir) > run
@@ -85,9 +85,9 @@ msf6 auxiliary(scanner/http/files_dir) > run
 [*] Using code '404' as not found for files with extension .txt
 [*] Using code '404' as not found for files with extension .zip
 [*] Using code '404' as not found for files with extension ~
-[*] Using code '404' as not found for files with extension 
+[*] Using code '404' as not found for files with extension
 [+] Found http://192.168.64.2:80/forum 403
-[*] Using code '404' as not found for files with extension 
+[*] Using code '404' as not found for files with extension
 [+] Found http://192.168.64.2:80/forum 403
 [*] Scanned 1 of 1 hosts (100% complete)
 [*] Auxiliary module execution completed
@@ -164,7 +164,7 @@ Hashed password: 330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a
 - Connect to ssh with `ssh laurie@192.168.64.2`
 
 ```
-laurie@BornToSecHackMe:~$ cat README 
+laurie@BornToSecHackMe:~$ cat README
 Diffuse this bomb!
 When you have all the password use it as "thor" user with ssh.
 
@@ -456,12 +456,17 @@ $6 = 432
 result: `4 2 6 3 1 5`
 
 thor ssh password `Publicspeakingisveryeasy.126241207201b2149opekmq426315`
-thor ssh password `Publicspeakingisveryeasy.126241207202b7559opekmq426315` <=== good 
+thor ssh password `Publicspeakingisveryeasy.126241207202b7559opekmq426315` <=== good
 thor ssh password `Publicspeakingisveryeasy.126241207207b5249opekmq426315`
 
 true thor password `Publicspeakingisveryeasy.126241207201b2149opekmq426135`
 
 ```
-thor@BornToSecHackMe:~$ cat README 
+thor@BornToSecHackMe:~$ cat README
 Finish this challenge and use the result as password for 'zaz' user.
+```
+
+```
+The message is: "SLASH"
+md5(SLASH) = 646da671ca01bb5d84dbb5fb2238dc8e
 ```
